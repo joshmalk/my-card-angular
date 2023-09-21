@@ -82,16 +82,16 @@ display: flex;
   justify-content: center;
   align-items: center; 
 }
-.paragraphs pa {
+.paragraphs p {
 /* Styles for the first paragraph */
 padding-right: 20px;
 padding-bottom: 20px;
 }
-.paragraphs pb {
+.paragraphs p {
 padding-right: 20px;
 padding-bottom: 20px;
 }
-.paragraphs pc {
+.paragraphs p {
 padding-right: 20px;
 padding-bottom: 20px;
 }
