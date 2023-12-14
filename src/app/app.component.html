@@ -1,67 +1,76 @@
-<div class="card-container">
-   <div class="card-wrapper">
-   <div class="Sheetz">
-     <label class="sheetzLbl">Sheetz</label>
-   </div>
-   
- <div class="directions">
-   <label id="directionsLbl">Directions</label>
- </div>
-   
- <div class="Favorites">
-   <label id="Favoriteslbl">Favorites</label>
-   </div>
-   
- <div class="btn-wrapper">
-   <button>Hotdog</button>
-   <button>Fries</button>
-   <button>Shake</button>
- </div>
- 
- <div class="images">
-   <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Hot_dog_with_mustard.png" alt="A beautiful landscape">
- 
-   <img src="https://media.istockphoto.com/id/496094410/photo/potatoes-fries-in-a-red-carton-box-isolated-fast-food.jpg?s=612x612&w=0&k=20&c=d7WnO6AW0C3A-xMSBa3Yb5rmSNelyY-jmxhW2efZq2Q=">
- 
-   <img 
- src="https://gofericecream.com/wp-content/uploads/2021/06/shake-.png"> 
-   
- </div>
- 
-  <div class="detailsBtn">
-         <button class="toggle-details">Details</button>
-     </div>
+<div class="buttons">
+  <button class="duplicate">Duplicate</button>
+  <button class="modify">Modify Name</button>
+  <button id="deletelastcard">Delete</button>
+  <button id="changecolorbutton">Change Color</button>
+  <button data-toggle-btn>Toggle Stats</button>
+</div>
+
+<div class="wrapper">
+  <div class="container">
+  <img class="image"
+       src="https://media.gettyimages.com/id/1454029167/photo/cristiano-ronaldo-smiles-as-he-is-unveiled-as-an-al-nassr-player-at-mrsool-park-stadium-on.jpg?s=612x612&w=0&k=20&c=M3Gf2V64CamE0mD6gpeH9Qb3ohGEm2Ou5xc5ZH4fLmc="/>
+  <div class="header">
+    <h3>Cristiano Ronaldo</h3>
+    <h4>Portuguese soccer player</h4>
+  </div>
+  <details class="details">
+    <summary>Summary</summary>
+    <div>
+      <ul>
+        <li>Five Time Ballon d'OR Winnder</li>
+        <li>850 Career Goals</li>
+        <li>Over 1,100 Career Appearances</li>
+      </ul>
+    </div>
+    </details>
+  </div>
+</div>
+
+<script>
+  const details = document.querySelector('summary');
       
-   
- <div class="paragraphs">
-   <p>$1.99 <br>A food consisting of a grilled or steamed sausage served in the slit of a partially sliced bun.</p>
-   <p>$0.99 <br>Side dish or snack typically made from deep-fried potatoes that have been cut into various shapes, especially thin strips.</p>
-   <p>$5.99 <br> A sweet beverage made by blending milk, ice cream, and flavorings or sweeteners.</p>
-   </div>
- 
-  
-   </div>
- 
-   </div>
-   
-   <div class ="duper">
-    <button id="duper">Button for duplication</button>
-     </div>   
-   
-   
-    
-   
-   <div class ="background">
-     <button id="background">Change Background</button>
-   </div>
-    
-   
-   <div class ="title">
-     <button id="title">Change Title</button>
-   </div>
-   
- 
-   
-     <div class="delete">
-         <button id="deleteLastCard">Delete Last Card</button>
-     </div>
+      //Toggle Stats 
+      document.querySelector('button[data-toggle-btn]').addEventListener('click', () => {
+        if(details.parentNode.getAttribute('open')) {
+          details.parentNode.removeAttribute('open');
+        }
+        else {
+          details.parentNode.setAttribute('open','open');
+        }
+      });
+
+      //Duplicate the 1st item/card
+      document.querySelector('.duplicate').addEventListener('click', () => {
+        const itemToClone = document.querySelector('.wrapper').cloneNode(true);
+        document.body.appendChild(itemToClone);
+      });
+
+      //Modify name of 1st card
+      document.querySelector('.modify').addEventListener('click', () => {
+        let name = prompt("Give new name");
+        if (name) {
+          document.querySelector('.wrapper').querySelector('h3').innerText = name;
+        }
+      });
+
+      //Delete last item/card
+      document.querySelector('#deletelastcard').addEventListener('click', function() {
+        const cards = document.querySelectorAll('.wrapper');
+      // Check if there are cards to delete
+        if (cards.length > 1) {
+          const lastCard = cards[cards.length - 1];
+          lastCard.parentNode.removeChild(lastCard);
+        }
+      });
+
+      //Change color of 1st card
+      document.querySelector('#changecolorbutton').addEventListener('click', () => {
+        if(document.querySelector(".wrapper").style.background == "yellow") {
+          document.querySelector(".wrapper").style.background = "blue";
+        }
+        else {
+          document.querySelector(".wrapper").style.background = "yellow";
+        }
+      });
+</script>

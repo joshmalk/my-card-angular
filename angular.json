@@ -74,10 +74,13 @@
             "tsConfig": "tsconfig.spec.json",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": ["src/styles.css"],
-            "scripts": []
+            "scripts": ["src/app/app.component.js"]
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "c4234355-52b8-457a-a39a-621f9e0abaa0"
   }
 }

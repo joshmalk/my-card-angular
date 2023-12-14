@@ -1,67 +1,45 @@
-// JavaScript to toggle visibility of the paragraph descriptions
-const toggleDetailsButtons = document.querySelectorAll('.toggle-details');
-const paragraphsSections = document.querySelectorAll('.paragraphs');
+const details = document.querySelector('summary');
+      
+      //Toggle Stats 
+      document.querySelector('button[data-toggle-btn]').addEventListener('click', () => {
+        if(details.parentNode.getAttribute('open')) {
+          details.parentNode.removeAttribute('open');
+        }
+        else {
+          details.parentNode.setAttribute('open','open');
+        }
+      });
 
-toggleDetailsButtons.forEach((button, index) => {
-  button.addEventListener('click', () => {
-    paragraphsSections[index].classList.toggle('hidden');
-  });
-});
+      //Duplicate the 1st item/card
+      document.querySelector('.duplicate').addEventListener('click', () => {
+        const itemToClone = document.querySelector('.wrapper').cloneNode(true);
+        document.body.appendChild(itemToClone);
+      });
 
-// JavaScript for cloning cards
-document.querySelector('#duper').addEventListener('click', (e) => {
-  const cardContainer = document.querySelector('.card-container');
-  const cardWrapperClone = document.querySelector('.card-wrapper').cloneNode(true);
+      //Modify name of 1st card
+      document.querySelector('.modify').addEventListener('click', () => {
+        let name = prompt("Give new name");
+        if (name) {
+          document.querySelector('.wrapper').querySelector('h3').innerText = name;
+        }
+      });
 
-  // Add unique classes to the cloned elements
-  cardWrapperClone.classList.add('cloned-card');
-  cardWrapperClone.querySelector('.toggle-details').textContent = 'Details';
+      //Delete last item/card
+      document.querySelector('#deletelastcard').addEventListener('click', function() {
+        const cards = document.querySelectorAll('.wrapper');
+      // Check if there are cards to delete
+        if (cards.length > 1) {
+          const lastCard = cards[cards.length - 1];
+          lastCard.parentNode.removeChild(lastCard);
+        }
+      });
 
-  cardContainer.appendChild(cardWrapperClone);
-
-  // Set up event listeners for the cloned button
-  const clonedToggleDetailsButton = cardWrapperClone.querySelector('.toggle-details');
-  const clonedParagraphsSection = cardWrapperClone.querySelector('.paragraphs');
-
-  clonedToggleDetailsButton.addEventListener('click', () => {
-    clonedParagraphsSection.classList.toggle('hidden');
-  });
-});
-document.querySelector('#deleteLastCard').addEventListener('click', (e) => {
-// Code for deleting the last card
-const cardContainer = document.querySelector('.card-container');
-const cardWrappers = document.querySelectorAll('.card-wrapper');
-
-// Check if there's at least one card to delete
-if (cardWrappers.length > 1) {
-    const lastCard = cardWrappers[cardWrappers.length - 1];
-    cardContainer.removeChild(lastCard);
-}
-});
-
-document.querySelector('.card-wrapper').addEventListener('mouseover', (e) => {
-const cardWrapper = document.querySelector('.card-wrapper');
-cardWrapper.classList.toggle('alt-bg2');
-});
-
-document.querySelector('.card-wrapper').addEventListener('mouseleave', (e) => {
-const cardWrapper = document.querySelector('.card-wrapper');
-cardWrapper.classList.toggle('alt-bg2');
-});
-
-document.querySelector('#title').addEventListener('click', (e) => {
-const headings = document.querySelectorAll('.sheetzLbl'); // Corrected class name
-headings.forEach((heading) => {
-heading.textContent = "something else";
-});
-});
-
-
-
-document.querySelector('#background').addEventListener('click', (e) => {
-const cardWrappers = document.querySelectorAll('.card-wrapper');
-/* loop to change each existing iteration*/
-cardWrappers.forEach((cardWrapper) => {
-  cardWrapper.classList.toggle('alt-bg');
-});
-});
+      //Change color of 1st card
+      document.querySelector('#changecolorbutton').addEventListener('click', () => {
+        if(document.querySelector(".wrapper").style.background == "yellow") {
+          document.querySelector(".wrapper").style.background = "blue";
+        }
+        else {
+          document.querySelector(".wrapper").style.background = "yellow";
+        }
+      });
